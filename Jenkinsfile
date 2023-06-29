@@ -1,14 +1,29 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'python:3' }
+    }
     
     environment {
         DATABASE_URL=""
     }
     stages {
+        stage('Python Version Check') {
+            steps {
+                sh 'python --version'
+                sh 'pip --version'
+            }
+            post {
+                success {
+                    echo 'Python Version Check was Successful!'
+                }
+                failure {
+                    echo 'Python Version Check Failed!'
+                }
+            }
+        }
         stage('Flask Unit Testing') {
             steps {
-                git branch: 'dev', url: 'https://github.com/ranjeet692/flask-react-app-demo.git'
-                sh 'pip install -r requirements.txt'
+                sh 'python -m pip install -r requirements.txt'
                 sh 'python -m unittest test.py'
             }
             post {
