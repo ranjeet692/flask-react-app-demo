@@ -7,3 +7,6 @@ https://hub.docker.com/_/jenkins/
 
 docker run --name jenkins-local -d -p 8080:8080 -p 50000:50000 -v jenkins:/var/jenkins_home jenkins/jenkins
 admin admin
+
+https://plugins.jenkins.io/pipeline-github/
+https://www.cprime.com/resources/blog/how-to-integrate-jenkins-github/
