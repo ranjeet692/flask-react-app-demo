@@ -53,10 +53,12 @@ pipeline {
             }
         }*/
 
-        /*stage('Flask App Code Quality Analysis') {
+        /* Skipping this since sonar cube is not configured
+        stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQubeServer') {
-                    sh 'sonar-scanner'
+                def scannerHome = tool 'SonarScanner';
+                withSonarQubeEnv() {
+                    sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
             post {
@@ -67,29 +69,12 @@ pipeline {
                     echo 'Flask Sonarcube Test Failed!'
                 }
             }
-        }
-        
-        stage('React App Code Quality Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQubeServer') {
-                    dir('frontend') {
-                        sh 'sonar-scanner'
-                    }
-                }
-            }
-            post {
-                success {
-                    echo 'React Sonarcube Test was Successful!'
-                }
-                failure {
-                    echo 'React Sonarcube Test Failed!'
-                }
-            }
         }*/
         
         stage('Merge to Main') {
             steps {
-                git credentialsId: 'git-id', branch: 'main', url: 'https://github.com/ranjeet692/flask-react-app-demo.git'
+                git credentialsId: 'git-cred', url: 'https://github.com/ranjeet692/flask-react-app-demo.git'
+                sh 'git checkout main'
                 sh 'git merge origin/dev'
                 sh 'git push origin main'
             }
