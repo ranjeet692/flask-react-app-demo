@@ -74,6 +74,8 @@ Sonarqube Server: [https://13.214.174.15/](https://13.214.174.15/)
 
 * I am using Sonarqube by Bitnami on AWS, it has ssl certification issue. This is making sonar-scanner scan to fail
 
+* Current I am running a free version of micro instance for Jenkins Server, That server is unable to build react app. while attempting builds, server is getting unresponsive and need to restart. Need to create a seperate node/agent for pipeline execution.
+
 ![spnarqube](assets/sonarqube-fail.png)
 
 ## Future Work
