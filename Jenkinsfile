@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        DATABASE_URL=""
+        DATABASE_TEST_URL = ""
     }
     stages {
         stage('Python Version Check') {
@@ -89,7 +89,7 @@ pipeline {
         
         stage('Merge to Main') {
             steps {
-                git branch: 'main', url: 'https://github.com/your-username/your-repo.git'
+                git credentialsId: 'git-id', branch: 'main', url: 'https://github.com/your-username/your-repo.git'
                 sh 'git merge dev'
                 sh 'git push origin main'
             }
