@@ -11,11 +11,6 @@ const items = [
         key: '1',
         label: 'Upload File',
         href: '/'
-    },
-    {
-        key: '2',
-        label: 'Data Grid',
-        href: '/data-grid'
     }
 ];
 

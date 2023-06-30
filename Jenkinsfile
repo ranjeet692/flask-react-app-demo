@@ -34,6 +34,8 @@ pipeline {
             }
         }
 
+        /* Skipping this since server size is small and it takes a lot of time to build
+        Need master slave configuration to run this
         stage('Build React App') {
             steps {
                 dir('frontend') {
@@ -49,7 +51,7 @@ pipeline {
                     echo 'React Build Failed!'
                 }
             }
-        }
+        }*/
 
         /*stage('Flask App Code Quality Analysis') {
             steps {

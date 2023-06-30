@@ -4,7 +4,7 @@ __pycache__/
 .venv/
 .env
 .DS_Store
-
+instance/
 
 # dependencies
 frontend/node_modules
@@ -16,9 +16,6 @@ docker-compose.yml
 
 # testing
 frontend/coverage
-
-# production
-frontend/build
 
 # misc
 frontend/.DS_Store
