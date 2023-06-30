@@ -1,2 +1,0 @@
-https://towardsdatascience.com/build-deploy-a-react-flask-app-47a89a5d17d9
-https://dev.to/matheusguimaraes/fast-way-to-enable-cors-in-flask-servers-42p0

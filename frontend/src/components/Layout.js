@@ -11,11 +11,6 @@ const items = [
         key: '1',
         label: 'Upload File',
         href: '/'
-    },
-    {
-        key: '2',
-        label: 'Data Grid',
-        href: '/data-grid'
     }
 ];
 
@@ -27,15 +22,17 @@ const CustomLayout = (props) => {
                 alignItems: 'center',
             }}>
                 {<div className="demo-logo">
-                   <img src={logo} alt="Organization Logo" style={{ width: '100%', padding: '16px' }} />
+                   <img src={logo} alt="Organization Logo" style={{ width: '30%', padding: '16px', marginTop: '25px'}} />
                 </div>
                 }
-                <Menu
-                    theme="dark"
-                    mode="horizontal"
-                    defaultSelectedKeys={['1']}
-                    items={items}
-                />
+                {/*
+                    <Menu
+                        theme="dark"
+                        mode="horizontal"
+                        defaultSelectedKeys={['1']}
+                        items={items}
+                    /> 
+            */}
             </Header>
             <Content style={{ padding: '0 50px', minHeight: '100%' }}>
                 <div className="site-layout-content">

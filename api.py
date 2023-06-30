@@ -6,12 +6,20 @@ from flask_cors import CORS, cross_origin
 from models.gdp_model import db, GDP
 import pandas as pd
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__, static_folder='frontend/build')
-
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///memory:')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db.init_app(app)
+
+# enable cors
+cors = CORS(app)
+
+# create the database tables
+with app.app_context():
+    db.create_all()
 
 # allowed file extensions
 ALLOWED_EXTENSIONS = {'csv'}
@@ -49,31 +57,17 @@ def upload_file():
 @app.route('/api/gdp', methods=['GET'])
 def get_gdp():
     if request.method == 'GET':
-        # get the page and limit query parameters
-        page = request.args.get('page', 1, type=int)
-        limit = request.args.get('limit', 10, type=int)
         # get the data from database
-        gdp = db.query.paginate(page=page, per_page=limit)
-        # convert the data to json format
-        result = [gdp.to_json() for gdp in gdp.items]
-        return jsonify(result)
-    
-# get data by country_code
-@app.route('/api/gdp/<country_code>', methods=['GET'])
-def get_gdp_by_country(country_code):
-    if request.method == 'GET':
-        # get the data from database
-        gdp = db.query.filter_by(country_code=country_code).first()
-        # convert the data to json format
-        result = gdp.to_json()
-        return jsonify(result)
+        gdp_data = GDP.query.all()
+        gdp_list = [gdp.to_dict() for gdp in gdp_data]
+        return jsonify(gdp_list)
     
 # modify data by id
 @app.route('/api/gdp/<id>', methods=['PUT'])
 def modify_gdp(id):
     if request.method == 'PUT':
         # get the data from database
-        gdp = db.query.filter_by(id=id).first()
+        gdp = GDP.query.filter_by(id=id).first()
         # update the data
         gdp.year_2019 = request.json['year_2019']
         gdp.year_2020 = request.json['year_2020']

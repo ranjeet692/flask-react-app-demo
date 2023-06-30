@@ -1,0 +1,19 @@
+country,country_code,indicator_name,indicator_code,year_2019,year_2020,year_2021
+Uganda,UGA,GDP per capita (current US$),NY.GDP.PCAP.CD,823.1389505,846.7672013,883.8920323
+Ukraine,UKR,GDP per capita (current US$),NY.GDP.PCAP.CD,3661.456299,3751.740723,4835.571777
+Uruguay,URY,GDP per capita (current US$),NY.GDP.PCAP.CD,17859.9315,15619.54266,17313.18835
+United States,USA,GDP per capita (current US$),NY.GDP.PCAP.CD,65120.39466,63530.63348,70248.629
+Uzbekistan,UZB,GDP per capita (current US$),NY.GDP.PCAP.CD,1784.009816,1749.655815,1983.064723
+St. Vincent and the Grenadines,VCT,GDP per capita (current US$),NY.GDP.PCAP.CD,8674.371009,8335.256476,8666.387041
+"Venezuela, RB",VEN,GDP per capita (current US$),NY.GDP.PCAP.CD,,,
+British Virgin Islands,VGB,GDP per capita (current US$),NY.GDP.PCAP.CD,,,
+Virgin Islands (U.S.),VIR,GDP per capita (current US$),NY.GDP.PCAP.CD,38596.03071,39552.1686,
+Vietnam,VNM,GDP per capita (current US$),NY.GDP.PCAP.CD,3491.091274,3586.347302,3756.489121
+Vanuatu,VUT,GDP per capita (current US$),NY.GDP.PCAP.CD,3076.589886,2877.520173,2996.621062
+World,WLD,GDP per capita (current US$),NY.GDP.PCAP.CD,11320.91588,10883.07605,12236.61574
+Samoa,WSM,GDP per capita (current US$),NY.GDP.PCAP.CD,4308.272753,4042.751224,3857.318464
+Kosovo,XKX,GDP per capita (current US$),NY.GDP.PCAP.CD,4416.108358,4310.811183,5269.783901
+"Yemen, Rep.",YEM,GDP per capita (current US$),NY.GDP.PCAP.CD,,,
+South Africa,ZAF,GDP per capita (current US$),NY.GDP.PCAP.CD,6688.787271,5741.643129,7055.044776
+Zambia,ZMB,GDP per capita (current US$),NY.GDP.PCAP.CD,1268.120941,956.8313639,1137.343633
+Zimbabwe,ZWE,GDP per capita (current US$),NY.GDP.PCAP.CD,1421.868596,1372.696674,1773.920411
