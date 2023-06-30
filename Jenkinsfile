@@ -89,7 +89,7 @@ pipeline {
         
         stage('Merge to Main') {
             steps {
-                git credentialsId: 'git-id', branch: 'main', url: 'https://github.com/your-username/your-repo.git'
+                git credentialsId: 'git-id', branch: 'main', url: 'https://github.com/ranjeet692/flask-react-app-demo.git'
                 sh 'git merge dev'
                 sh 'git push origin main'
             }
