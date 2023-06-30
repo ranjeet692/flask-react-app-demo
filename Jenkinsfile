@@ -52,8 +52,6 @@ pipeline {
                 }
             }
         }*/
-
-        /* Skipping this since sonar cube is not configured
         stage('SonarQube Analysis') {
             steps {
                 def scannerHome = tool 'SonarScanner';
@@ -69,7 +67,7 @@ pipeline {
                     echo 'Flask Sonarcube Test Failed!'
                 }
             }
-        }*/
+        }
         
         stage('Merge to Main') {
             steps {
