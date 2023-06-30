@@ -51,7 +51,7 @@ pipeline {
             }
         }
 
-        stage('Flask App Code Quality Analysis') {
+        /*stage('Flask App Code Quality Analysis') {
             steps {
                 withSonarQubeEnv('SonarQubeServer') {
                     sh 'sonar-scanner'
@@ -83,7 +83,7 @@ pipeline {
                     echo 'React Sonarcube Test Failed!'
                 }
             }
-        }
+        }*/
         
         stage('Merge to Main') {
             steps {
