@@ -76,6 +76,13 @@ Sonarqube Server: [https://13.214.174.15/](https://13.214.174.15/)
 
 ![spnarqube](assets/sonarqube-fail.png)
 
+## Future Work
+
+* Seprate Node to run the pipeline. Currently pipeline is using same jenkins server to run the pipeline. I am planning to create a seperate node through docker on aws to run the pipeline.
+
+* Seprate pages for upload and display datatable
+* Add pagination in data table
+
 ## References
 
 App: Flask + React
