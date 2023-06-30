@@ -1,4 +1,4 @@
-Country Name,Country Code,Indicator Name,Indicator Code,2019,2020,2021
+country,country_code,indicator_name,indicator_code,year_2019,year_2020,year_2021
 Aruba,ABW,GDP per capita (current US$),NY.GDP.PCAP.CD,31650.76054,24487.86356,29342.10086
 Africa Eastern and Southern,AFE,GDP per capita (current US$),NY.GDP.PCAP.CD,1512.270553,1363.540741,1549.77273
 Afghanistan,AFG,GDP per capita (current US$),NY.GDP.PCAP.CD,500.5226641,516.8665522,368.7546142

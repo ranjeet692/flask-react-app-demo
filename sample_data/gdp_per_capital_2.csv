@@ -1,4 +1,4 @@
-Country Name,Country Code,Indicator Name,Indicator Code,2019,2020,2021
+country,country_code,indicator_name,indicator_code,year_2019,year_2020,year_2021
 Central African Republic,CAF,GDP per capita (current US$),NY.GDP.PCAP.CD,426.4087626,435.4692516,461.1374902
 Canada,CAN,GDP per capita (current US$),NY.GDP.PCAP.CD,46328.67184,43258.26387,51987.93905
 Central Europe and the Baltics,CEB,GDP per capita (current US$),NY.GDP.PCAP.CD,16358.47415,16293.80003,18751.02651
