@@ -6,4 +6,4 @@ flask_restful
 pandas
 psycopg2-binary
 pytest 
-pytest-flask
+python-dotenv

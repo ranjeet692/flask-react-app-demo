@@ -11,10 +11,11 @@
  * */
 
 import React, { useState } from "react";
-import { Upload, message, Button } from 'antd';
+import { Upload, message, Button, Divider } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import CustomLayout from "./Layout";
+import DataTable from "./DataTable";
 
 const UploadFile = () => {
     const [file, setFile] = useState(null);
@@ -45,12 +46,17 @@ const UploadFile = () => {
 
     return (
         <CustomLayout>
-            <div style={{ marginTop: 100 }}>
+            <div style={{ marginTop: 50 }}>
                 <Upload {...uploadProps}>
                     <Button icon={<UploadOutlined />}>Click to Upload File</Button>
                 </Upload>
                 <Button type="primary" onClick={uploadFile} style={{ marginTop: 16 }} disabled={!file}>Upload</Button>
+                <Divider plain>Country & GDP</Divider>
+                {
+                    <DataTable />
+                }
             </div>
+            
         </CustomLayout>
     );
 }

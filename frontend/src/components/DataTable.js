@@ -2,21 +2,26 @@
 // User can edit a record by clicking on the edit icon in the last column of the table. This will open a modal dialog with the record details. User can edit the record and save it.
 
 import React, { useState, useEffect } from "react";
-import { Table, Button, Modal, Form, Input, Select, message } from 'antd';
+import { Table, Modal, Form, Input, InputNumber, Select, Button, message } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
 import axios from 'axios';
-import CustomLayout from "./Layout";
-
 const { Option } = Select;
 
 const DataTable = () => {
+    const [form] = Form.useForm();
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
-    const [form] = Form.useForm();
     const [record, setRecord] = useState(null);
 
     const columns = [
+        {
+            title: 'ID',
+            dataIndex: 'id',
+            key: 'id',
+            sorter: (a, b) => a.id - b.id,
+            sortDirections: ['descend', 'ascend']
+        },
         {
             title: 'Country',
             dataIndex: 'country',
@@ -72,42 +77,88 @@ const DataTable = () => {
             render: (text, record) => (
                 <EditOutlined onClick={() => showModal(record)} />
             ),
-        },
+        }
     ];
 
+    const sample_data = [
+        {
+            "country": "Uganda",
+            "country_code": "UGA",
+            "id": 1,
+            "indicator_code": "NY.GDP.PCAP.CD",
+            "indicator_name": "GDP per capita (current US$)",
+            "year_2019": 823.1389505,
+            "year_2020": 846.7672013,
+            "year_2021": 883.8920323
+        },
+        {
+            "country": "Ukraine",
+            "country_code": "UKR",
+            "id": 2,
+            "indicator_code": "NY.GDP.PCAP.CD",
+            "indicator_name": "GDP per capita (current US$)",
+            "year_2019": 3661.456299,
+            "year_2020": 3751.740723,
+            "year_2021": 4835.571777
+        },
+        {
+            "country": "Uruguay",
+            "country_code": "URY",
+            "id": 3,
+            "indicator_code": "NY.GDP.PCAP.CD",
+            "indicator_name": "GDP per capita (current US$)",
+            "year_2019": 17859.9315,
+            "year_2020": 15619.54266,
+            "year_2021": 17313.18835
+        }
+    ];
+
+    // On clicking the edit icon, this function is called to open the modal dialog which is EditRecord component.
     const showModal = (record) => {
-        setRecord(record);
         setVisible(true);
-    }
+        setRecord(record);
+    };
 
-    const handleOk = () => {
-        form.submit();
-    }
-
-    const handleCancel = () => {
+    // Handle the cancel button click of the modal dialog.
+    const handleModalCancel = () => {
         setVisible(false);
-    }
+    };
 
-    const onFinish = (values) => {
+    // Handle the save button click of the modal dialog.
+    const handleModalOk = () => {
+        setVisible(false);
+        fetchData();
+    };
+
+    const onFinish = values => {
+        console.log(values);
         setLoading(true);
-        axios.put(`http://localhost:5000/api/update-record/${record.id}`, values)
+        axios.put(`http://127.0.0.1:8000/api/gdp/${record.id}`, values)
             .then(res => {
                 message.success('Record updated successfully');
-                setVisible(false);
-                setLoading(false);
-                fetchData();
+                handleModalOk();
             })
             .catch(err => {
                 message.error('Record update failed');
                 setLoading(false);
             });
-    }
+    };
 
+
+    // This function fetches the data from the backend API.
     const fetchData = () => {
         setLoading(true);
-        axios.get('http://localhost:5000/api/get-data')
+        axios.get('http://127.0.0.1:8000/api/gdp',
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            }
+        )
             .then(res => {
-                setData(res.data);
+                console.log(typeof res.data);
+                setData(sample_data);
                 setLoading(false);
             })
             .catch(err => {
@@ -117,22 +168,19 @@ const DataTable = () => {
 
     useEffect(() => {
         fetchData();
-    }
-        , []);
+    }, []);
 
     return (
         <div>
-            <CustomLayout>
-                <Table columns={columns} dataSource={data} loading={loading} rowKey="id" />
-            </CustomLayout>
+            <Table columns={columns} dataSource={data} loading={loading} rowKey="id" />
             <Modal
+                open={visible}
                 title="Edit Record"
-                visible={visible}
-                onOk={handleOk}
-                onCancel={handleCancel}
-                confirmLoading={loading}
+                onOk={handleModalOk}
+                onCancel={handleModalCancel}
+                footer={[
+                ]}
             >
-
                 <Form
                     form={form}
                     name="edit-record"
@@ -146,6 +194,13 @@ const DataTable = () => {
                         year_2020: record ? record.year_2020 : '',
                         year_2021: record ? record.year_2021 : '',
                     }}
+                    labelCol={{
+                        span: 6,
+                      }}
+                      wrapperCol={{
+                        span: 12,
+                      }}
+                      layout="horizontal"
                 >
                     <Form.Item
                         name="country"
@@ -157,7 +212,7 @@ const DataTable = () => {
                             },
                         ]}
                     >
-                        <Input />
+                        <Input disabled/>
                     </Form.Item>
                     <Form.Item
                         name="country_code"
@@ -169,7 +224,72 @@ const DataTable = () => {
                             },
                         ]}
                     >
-                        <Input />
+                        <Input disabled/>
+                    </Form.Item>
+                    <Form.Item
+                        name="indicator_name"
+                        label="Indicator Name"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input indicator name',
+                            },
+                        ]}
+                    >
+                        <Input disabled/>
+                    </Form.Item>
+                    <Form.Item
+                        name="indicator_code"
+                        label="Indicator Code"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input indicator code',
+                            },
+                        ]}
+                    >
+                        <Input disabled/>
+                    </Form.Item>
+                    <Form.Item
+                        name="year_2019"
+                        label="2019"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input 2019 value',
+                            },
+                        ]}
+                    >
+                        <InputNumber />
+                    </Form.Item>
+                    <Form.Item
+                        name="year_2020"
+                        label="2020"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input 2020 value',
+                            },
+                        ]}
+                    >
+                        <InputNumber />
+                    </Form.Item>
+                    <Form.Item
+                        name="year_2021"
+                        label="2021"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please input 2021 value',
+                            },
+                        ]}
+                    >
+                        <InputNumber />
+                    </Form.Item>
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit">
+                            Submit
+                        </Button>
                     </Form.Item>
                 </Form>
             </Modal>

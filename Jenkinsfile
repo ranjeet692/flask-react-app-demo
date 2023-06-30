@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Python Version Check') {
             steps {
-                sh 'python --version'
+                sh 'python3 --version'
                 sh 'pip --version'
             }
             post {
@@ -21,8 +21,8 @@ pipeline {
         }
         stage('Flask Unit Testing') {
             steps {
-                sh 'python -m pip install -r requirements.txt'
-                sh 'python -m unittest test.py'
+                sh 'python3 -m pip install -r requirements.txt'
+                sh 'python3 -m unittest test.py'
             }
             post {
                 success {
