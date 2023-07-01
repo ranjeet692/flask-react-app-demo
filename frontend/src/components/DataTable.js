@@ -158,7 +158,7 @@ const DataTable = () => {
         )
             .then(res => {
                 console.log(typeof res.data);
-                setData(sample_data);
+                setData(res.data);
                 setLoading(false);
             })
             .catch(err => {

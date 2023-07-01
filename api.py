@@ -1,11 +1,11 @@
 # Description: This file contains the API for the application.
 
-from flask import Flask, request, jsonify, render_template, send_from_directory
+from flask import Flask, request, jsonify, make_response, send_from_directory
 from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS, cross_origin
 from models.gdp_model import db, GDP
 import pandas as pd
-import os
+import os, json
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -60,7 +60,15 @@ def get_gdp():
         # get the data from database
         gdp_data = GDP.query.all()
         gdp_list = [gdp.to_dict() for gdp in gdp_data]
-        return jsonify(gdp_list)
+        # return the json data
+        json_data = json.dumps(gdp_list).replace("NaN" , '"null"')
+        print(json_data)
+        response = make_response(
+            json_data,
+            200
+        )  
+        response.headers["Content-Type"] = "application/json"
+        return response
     
 # modify data by id
 @app.route('/api/gdp/<id>', methods=['PUT'])

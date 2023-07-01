@@ -72,6 +72,8 @@ Sonarqube Server: [https://13.214.174.15/](https://13.214.174.15/)
 
 * UI needs more refinement and there is an issue with axios libray in react to parse json data while fethcing data from flask app for some version of axios. Still trying to find the suitable version. [ Issue Link](https://github.com/axios/axios/issues/1723)
 
+Update: Json parse issue is now resolved
+
 * I am using Sonarqube by Bitnami on AWS, it has ssl certification issue. This is making sonar-scanner scan to fail
 
 * Current I am running a free version of micro instance for Jenkins Server, That server is unable to build react app. while attempting builds, server is getting unresponsive and need to restart. Need to create a seperate node/agent for pipeline execution.
