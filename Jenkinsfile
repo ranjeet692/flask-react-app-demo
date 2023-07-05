@@ -35,9 +35,6 @@ pipeline {
                 }
             }
         }
-
-        /* Skipping this since server size is small and it takes a lot of time to build
-        Need master slave configuration to run this
         stage('Build React App') {
             steps {
                 dir('frontend') {
@@ -53,7 +50,7 @@ pipeline {
                     echo 'React Build Failed!'
                 }
             }
-        }*/
+        }
         stage('SonarQube Analysis') {
             environment {
                 scannerHome = tool 'sonarqube-scanner'
@@ -62,7 +59,7 @@ pipeline {
                 withSonarQubeEnv(installationName:'sonarqube-aws') {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
-                timeout(time: 10, unit: 'MINUTES') {
+                timeout(time: 30, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 }
             }
