@@ -1,8 +1,5 @@
 version: 0.2
-env:
 shell: bash
-phases:
-pre_build:
 commands:
 - mkdir /downloads/sonarqube -p
 - cd /downloads/sonarqube
