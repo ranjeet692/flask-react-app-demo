@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'linux'
+    }
     
     environment {
         DATABASE_TEST_URL = ""
@@ -8,7 +10,7 @@ pipeline {
         stage('Python Version Check') {
             steps {
                 sh 'python3 --version'
-                sh 'pip --version'
+                sh 'pip3 --version'
             }
             post {
                 success {
