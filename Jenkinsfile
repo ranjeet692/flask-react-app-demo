@@ -78,6 +78,8 @@ pipeline {
                 git credentialsId: 'git-cred', url: 'https://github.com/ranjeet692/flask-react-app-demo.git'
                 sh 'git checkout main'
                 sh 'git merge origin/dev'
+                sh 'git add .'
+                sh 'git commit -m "Merge to Main"'
                 sh 'git push origin main'
             }
         }
