@@ -55,7 +55,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv(installationName:'sonarqube-aws') {
-                    sh "sonar-scanner"
+                    sh "/home/ubuntu/sonarqube/installation/sonar-scanner-4.8.0.2856-linux/bin/sonar-scanner"
                 }
             }
             post {
