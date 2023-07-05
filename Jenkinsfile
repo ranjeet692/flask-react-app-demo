@@ -72,10 +72,33 @@ pipeline {
                 }
             }
         }
-        
-        stage('Git Checkout') {
+
+        stage('Merge to Main') {
+            when {
+                branch 'dev'
+            }
             steps {
-                git branch 'main' credentialsId: 'git-cred', url: 'https://github.com/ranjeet692/flask-react-app-demo.git'
+                // Merge the code to the master branch
+                script {
+                    git branch: 'main',
+                        changelog: false,
+                        credentialsId: 'git-cred',
+                        fastForwardMode: 'FF',
+                        strategy: 'default',
+                        mergeRemote: 'origin',
+                        mergeTarget: 'origin/main'
+                }
+            }
+        }
+        stage('Push to Main') {
+            when {
+                branch 'dev'
+            }
+            steps {
+                // Push the changes to the master branch
+                script {
+                    git push 'origin', 'main'
+                }
             }
         }
     }
