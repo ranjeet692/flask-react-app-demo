@@ -45,6 +45,13 @@ python run.py
 
 Open the App at [http://127.0.0.1:8000](http://127.0.0.1:8000/)
 
+
+**Run through Docker**
+
+```
+docker-compose up --build -d
+```
+
 ### How to use app
 
 **Home Page**
