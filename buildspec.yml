@@ -1,10 +1,4 @@
 version: 0.2
-env:
-  variables:
-    IMAGE_REPO_NAME: flask-app-demo
-    IMAGE_TAG: latest
-    AWS_DEFAULT_REGION: ap-southeast-1
-    AWS_ACCOUNT_ID: 000819751341
 phases:
   install:
     runtime-versions:
@@ -18,10 +12,4 @@ phases:
       - cd frontend
       - npm install
       - npm run build
-  post_build:
-    commands:
-      - printf 'ECR :"%s"' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG 
-      - printf '[{"name":"flask-app-demo","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG > imagedefinitions.json
-artifacts:
-  files:
-    - imagedefinitions.json
+      - cd ..
