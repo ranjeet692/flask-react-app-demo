@@ -81,12 +81,12 @@ pipeline {
                 // Merge the code to the master branch
                 script {
                     git branch: 'main',
-                        changelog: false,
-                        credentialsId: 'git-cred',
-                        fastForwardMode: 'FF',
-                        strategy: 'default',
-                        mergeRemote: 'origin',
-                        mergeTarget: 'origin/main'
+                    changelog: false,
+                    credentialsId: 'git-cred',
+                    fastForwardMode: 'FF',
+                    strategy: 'default',
+                    mergeRemote: 'origin',
+                    mergeTarget: 'origin/main'
                 }
             }
         }
@@ -96,9 +96,7 @@ pipeline {
             }
             steps {
                 // Push the changes to the master branch
-                script {
-                    git push 'origin', 'main'
-                }
+                sh 'git push origin main'
             }
         }
     }
